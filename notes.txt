@@ -1,0 +1,4 @@
+1. Auth - (Google, Apple, Email)
+
+    --> Forget Password with otp verification
+    --> Google and Apple Sign-In
