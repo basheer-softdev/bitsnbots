@@ -9,34 +9,27 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
     },
-    password: { type: String }, // Optional if Google/Apple auth
-
+    password: { type: String },
     provider: {
       type: String,
       enum: ["email", "google", "apple"],
       default: "email",
     },
-
     isVerified: {
       type: Boolean,
       default: false,
     },
-
     role: {
       type: String,
       enum: ["user", "admin"],
       default: "user",
     },
-
-    avatar: { type: String }, // profile pic (can be Google/Apple image or custom)
-
     // Blog/Video/Product Interaction
     likedBlogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }],
     savedBlogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }],
     likedVideos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
     savedVideos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
     savedProducts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
-
     // Recently viewed content
     recentlyViewed: [
       {
@@ -48,7 +41,6 @@ const userSchema = new mongoose.Schema(
         viewedAt: { type: Date, default: Date.now },
       },
     ],
-
     // Order & Cart
     orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
     cart: [
@@ -58,16 +50,13 @@ const userSchema = new mongoose.Schema(
       },
     ],
     wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
-
     // Notifications
     emailNotifications: { type: Boolean, default: true },
     notifyMeForStock: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
     ],
-
     // Events
     registeredEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
-
     // Address (for shipping)
     addresses: [
       {
@@ -81,7 +70,6 @@ const userSchema = new mongoose.Schema(
         isDefault: { type: Boolean, default: false },
       },
     ],
-
     // Reviews
     reviews: [
       {
@@ -91,7 +79,6 @@ const userSchema = new mongoose.Schema(
         comment: String,
       },
     ],
-
     // Meta
     createdAt: { type: Date, default: Date.now },
     lastLogin: { type: Date },
@@ -103,4 +90,5 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+const UserModal = mongoose.models.User || mongoose.model("User", userSchema);
+export default UserModal;
