@@ -1,11 +1,28 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useSearchParams, useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const router = useRouter();
+
+  const { data: session, status } = useSession();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.replace(callbackUrl); // redirect back to where they came from
+    }
+  }, [status, router, callbackUrl]);
+
   return (
     <div className="flex flex-1 min-h-screen">
       <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
@@ -27,7 +44,24 @@ const page = () => {
 
           <div className="my-10">
             <div>
-              <form action="#" method="POST" className="space-y-6">
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const res = await signIn("credentials", {
+                    email,
+                    password,
+                    redirect: false,
+                    callbackUrl,
+                  });
+
+                  if (res?.ok) {
+                    router.push(res.url);
+                  } else {
+                    setError("Invalid credentials");
+                  }
+                }}
+                className="space-y-6"
+              >
                 <div>
                   <label
                     htmlFor="email"
@@ -42,6 +76,8 @@ const page = () => {
                       type="email"
                       required
                       autoComplete="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                     />
                   </div>
@@ -61,6 +97,8 @@ const page = () => {
                       type="password"
                       required
                       autoComplete="current-password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                     />
                   </div>
@@ -144,8 +182,8 @@ const page = () => {
 
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <button
-                  onClick={() => signIn("google")}
-                  className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:ring-transparent"
+                  onClick={() => signIn("google", { callbackUrl })}
+                  className="flex cursor-pointer w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:ring-transparent"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -172,9 +210,9 @@ const page = () => {
                   <span className="text-sm/6 font-semibold">Google</span>
                 </button>
 
-                <Link
-                  href="#"
-                  className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:ring-transparent"
+                <button
+                  onClick={() => signIn("apple", { callbackUrl })}
+                  className="flex cursor-pointer w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:ring-transparent"
                 >
                   <svg
                     aria-hidden="true"
@@ -185,7 +223,7 @@ const page = () => {
                     <path d="M380.844 297.529c.787 84.752 74.349 112.955 75.164 113.314-.622 1.988-11.754 40.191-38.756 79.652-23.343 34.117-47.568 68.107-85.731 68.811-37.499.691-49.557-22.236-92.429-22.236-42.859 0-56.256 21.533-91.753 22.928-36.837 1.395-64.889-36.891-88.424-70.883-48.093-69.53-84.846-196.475-35.496-282.165 24.516-42.554 68.328-69.501 115.882-70.192 36.173-.69 70.315 24.336 92.429 24.336 22.1 0 63.59-30.096 107.208-25.676 18.26.76 69.517 7.376 102.429 55.552-2.652 1.644-61.159 35.704-60.523 106.559M310.369 89.418C329.926 65.745 343.089 32.79 339.498 0 311.308 1.133 277.22 18.785 257 42.445c-18.121 20.952-33.991 54.487-29.709 86.628 31.421 2.431 63.52-15.967 83.078-39.655" />
                   </svg>
                   <span className="text-sm/6 font-semibold">Apple</span>
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -202,4 +240,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

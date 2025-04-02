@@ -32,7 +32,15 @@ export async function POST(request) {
     }
 
     const token = jwt.sign(
-      { _id: user._id, name: user.name, role: user.role, profile: user.image },
+      {
+        _id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        role: user.role,
+        isVerified: user.isVerified,
+        provider: user.provider,
+        profile: user.profile,
+      },
       JWT_SECRET,
       { expiresIn: "24h" }
     );
@@ -40,7 +48,16 @@ export async function POST(request) {
     return NextResponse.json(
       {
         message: "Logged in successfully",
-        token
+        token,
+        user: {
+          _id: user._id,
+          fullName: user.fullName,
+          email: user.email,
+          role: user.role,
+          isVerified: user.isVerified,
+          provider: user.provider,
+          profile: user.profile,
+        },
       },
       { status: 200 }
     );

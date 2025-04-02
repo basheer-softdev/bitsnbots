@@ -6,12 +6,12 @@ import bcrypt from "bcrypt";
 
 export async function POST(request) {
   try {
-    const { userName, userPassword, userEmail, userPhone, userImage } =
+    const { userName, userPassword, userEmail, userImage } =
       await request.json();
 
     await dbConnect();
 
-    const existingUser = await UserModal.findOne({ userEmail });
+    const existingUser = await UserModal.findOne({ email: userEmail });
     if (existingUser) {
       return NextResponse.json(
         { message: "User already exists" },
@@ -23,23 +23,24 @@ export async function POST(request) {
     const hashedPassword = await bcrypt.hash(userPassword, salt);
 
     const newUser = new UserModal({
-      name: userName,
+      fullName: userName,
       email: userEmail,
       password: hashedPassword,
-      phone: userPhone,
-      image: userImage,
-      userRole: "user"
+      profile: userImage,
+      provider: "email",
+      role: "user",
+      isVerified: false,
     });
 
     const savedUser = await newUser.save();
 
     // Exclude sensitive information from the response
-    const { userPassword: _, ...userDetails } = savedUser.toObject();
+    const { password, ...userDetails } = savedUser.toObject();
 
     return NextResponse.json(
       {
         message: "User registered successfully",
-        user: userDetails
+        user: userDetails,
       },
       { status: 201 }
     );

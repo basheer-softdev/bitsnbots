@@ -19,7 +19,7 @@ export const options = {
           id: profile.sub,
           name: profile.name,
           email: profile.email,
-          image: profile.picture,
+          profile: profile.picture,
           role: userRole,
           provider: "google",
         };
@@ -57,7 +57,7 @@ export const options = {
             _id: user._id,
             email: user.email,
             name: user.fullName,
-            image: user.image,
+            profile: user.profile,
             role: user.role,
             provider: "email",
           };
@@ -83,11 +83,10 @@ export const options = {
           const newUser = new UserModal({
             fullName: user.name || "",
             email: user.email,
-            image: user.image,
+            profile: user.profile || "",
             provider: user.provider || "credentials",
             role: user.role || "user",
-            isVerified: true,
-            password: user.provider === "email" ? user.password : "",
+            isVerified: true, // Social logins are treated as verified
           });
           await newUser.save();
           user._id = newUser._id;
@@ -106,6 +105,8 @@ export const options = {
       if (session?.user) {
         session.user._id = token._id;
         session.user.role = token.role;
+        session.user.provider = token.provider;
+        session.user.profile = token.profile;
       }
       return session;
     },
@@ -114,6 +115,8 @@ export const options = {
       if (user) {
         token._id = user._id;
         token.role = user.role;
+        token.provider = user.provider;
+        token.profile = user.profile;
       }
       return token;
     },
