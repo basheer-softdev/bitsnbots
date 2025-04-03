@@ -9,13 +9,14 @@ const page = () => {
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div>
             <div className="w-full flex justify-center">
-              <Image
-                alt="bitsnbots"
-                src="/bitsnbots.png"
-                width={120}
-                height={60}
-                className="-ml-6 -mb-10"
-              />
+              <Link
+                href="/"
+                className="flex items-center space-x-2 -m-1.5 p-1.5"
+              >
+                <span className="logo5 text-2xl text-indigo-600 font-semibold -tracking-tighter">
+                  @bitsnbots
+                </span>
+              </Link>
             </div>
             <h2 className="mt-8 text-2xl/9 text-center font-bold tracking-tight text-gray-900">
               Create New Password
