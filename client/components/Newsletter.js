@@ -25,14 +25,14 @@ const Newsletter = () => {
     }
   };
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900 pb-8 pt-16">
+    <div className="relative isolate overflow-hidden bg-gray-900 py-16">
       <div className="mx-auto container px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
             <h2 className="text-4xl font-semibold tracking-tight text-white">
               Subscribe to our newsletter
             </h2>
-            <p className="mt-4 text-lg text-gray-300">
+            <p className="mt-4 text-gray-400">
               Get exclusive insights, hands-on tutorials, and the latest
               robotics news straight to your inbox.
             </p>
@@ -48,11 +48,11 @@ const Newsletter = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 autoComplete="email"
-                className="min-w-0 flex-auto rounded-sm bg-white/5 px-3.5 py-2 text-base text-white placeholder:text-gray-500 sm:text-sm/6 focus:outline-none focus:border"
+                className="min-w-0 flex-auto rounded-sm bg-white/5 px-3.5 py-2 text-base text-white placeholder:text-gray-500 sm:text-sm/6 focus:outline-none focus:border-none"
               />
               <button
                 onClick={handleSubscribe}
-                className="flex-none rounded-sm bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 transition-all duration-500"
+                className="flex-none rounded-sm bg-indigo-600 cursor-pointer px-3.5 py-2.5 text-sm text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 transition-all duration-500"
               >
                 Subscribe
               </button>
@@ -66,10 +66,10 @@ const Newsletter = () => {
                   className="size-6 text-white"
                 />
               </div>
-              <dt className="mt-4 text-base font-semibold text-white">
+              <dt className="mt-4 font-semibold text-white">
                 Weekly articles
               </dt>
-              <dd className="mt-2 text-base/7 text-gray-400">
+              <dd className="mt-2 text-gray-400">
                 Learn about cutting-edge robotics trends, DIY projects, and
                 coding tutorials.
               </dd>
@@ -81,10 +81,10 @@ const Newsletter = () => {
                   className="size-6 text-white"
                 />
               </div>
-              <dt className="mt-4 text-base font-semibold text-white">
+              <dt className="mt-4 font-semibold text-white">
                 No spam
               </dt>
-              <dd className="mt-2 text-base/7 text-gray-400">
+              <dd className="mt-2 text-gray-400">
                 We respect your inbox and send only valuable content.
               </dd>
             </div>

@@ -93,16 +93,16 @@ const navigation = {
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 pt-14">
+    <footer className="bg-gray-900 pt-14 -mt-0.5">
       <div className="mx-auto container px-6 pb-8 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <Link href="/">
-              <span className="logo5 text-2xl text-white font-semibold -tracking-tighter">
+              <span className="logo5 text-2xl text-indigo-600 font-semibold -tracking-tighter">
                 @bitsnbots
               </span>
             </Link>
-            <p className="text-sm/6 text-balance text-gray-300">
+            <p className="text-balance text-gray-300">
               Making the world a better place through constructing elegant
               hierarchies.
             </p>
@@ -122,7 +122,7 @@ const Footer = () => {
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm/6 font-semibold text-white">
+                <h3 className="font-semibold text-white">
                   Solutions
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -130,7 +130,7 @@ const Footer = () => {
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        className="text-sm/6 text-gray-400 hover:text-white"
+                        className="text-sm text-gray-400 hover:text-white"
                       >
                         {item.name}
                       </a>
@@ -139,13 +139,13 @@ const Footer = () => {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-white">Support</h3>
+                <h3 className="font-semibold text-white">Support</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.support.map((item) => (
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        className="text-sm/6 text-gray-400 hover:text-white"
+                        className="text-sm text-gray-400 hover:text-white"
                       >
                         {item.name}
                       </a>
@@ -156,13 +156,13 @@ const Footer = () => {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm/6 font-semibold text-white">Company</h3>
+                <h3 className="font-semibold text-white">Company</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.community.map((item) => (
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        className="text-sm/6 text-gray-400 hover:text-white"
+                        className="text-sm text-gray-400 hover:text-white"
                       >
                         {item.name}
                       </a>
@@ -171,13 +171,13 @@ const Footer = () => {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-white">Legal</h3>
+                <h3 className="font-semibold text-white">Legal</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.resources.map((item) => (
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        className="text-sm/6 text-gray-400 hover:text-white"
+                        className="text-sm text-gray-400 hover:text-white"
                       >
                         {item.name}
                       </a>
@@ -189,8 +189,8 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-sm/6 text-gray-400">
-            &copy; 2024 bitsnbots, Inc. All rights reserved.
+          <p className="text-sm text-gray-400">
+            &copy; 2025 bitsnbots, Inc. All rights reserved.
           </p>
         </div>
       </div>

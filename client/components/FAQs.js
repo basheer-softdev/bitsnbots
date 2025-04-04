@@ -63,10 +63,10 @@ const faqs = [
 
 const FAQs = () => {
   return (
-    <div className="bg-gray-900">
-      <div className="mx-auto container px-6 pb-5 pt-14 lg:px-8">
+    <div className="bg-gray-900 -my-0.5">
+      <div className="mx-auto container px-6 py-14 lg:px-8">
         <div>
-          <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl text-center">
+          <h2 className="text-4xl font-semibold tracking-tight text-white text-center">
             Frequently Asked Questions
           </h2>
           {/* FAQ Grid Layout */}
@@ -83,7 +83,7 @@ const FAQs = () => {
                   <>
                     <dt>
                       <Disclosure.Button className="group flex w-full items-start justify-between text-left text-white">
-                        <span className="text-lg font-semibold">
+                        <span className="text-lg">
                           {faq.question}
                         </span>
                         <span className="ml-6 flex h-7 items-center">
@@ -103,7 +103,7 @@ const FAQs = () => {
                     </dt>
                     <Disclosure.Panel
                       as="dd"
-                      className="mt-2 text-gray-300 leading-relaxed"
+                      className="mt-2 text-gray-400 leading-relaxed"
                     >
                       {faq.answer}
                     </Disclosure.Panel>

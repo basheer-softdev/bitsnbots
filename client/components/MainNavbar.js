@@ -81,7 +81,7 @@ export default function Example() {
     <header className="bg-gray-900">
       <nav
         aria-label="Global"
-        className="container mx-auto flex items-center justify-between p-3 lg:px-8"
+        className="container mx-auto flex items-center justify-between p-4 lg:px-8"
       >
         <div className="flex lg:flex-1 items-center">
           <Link href="/" className="flex items-center space-x-2 -m-1.5 p-1.5">
@@ -104,7 +104,7 @@ export default function Example() {
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <Link
             href="/"
-            className="relative text-sm/6 text-white after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:duration-300 hover:after:scale-x-100"
+            className="relative text-sm text-white after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:duration-300 hover:after:scale-x-100"
           >
             Home
           </Link>

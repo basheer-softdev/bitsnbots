@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import MainNavbar from "../components/MainNavbar";
 import { IoIosArrowUp } from "react-icons/io";
 import Footer from "@/client/components/Footer";
+import { ChevronUpIcon } from "@heroicons/react/24/outline";
 
 const MainLayout = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,21 +30,19 @@ const MainLayout = ({ children }) => {
     <div>
       <MainNavbar />
       <main className="min-h-screen overflow-y-auto">{children}</main>
-
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-2 right-2 md:bottom-[38px] flex flex-col items-center group z-40"
+          className="fixed bottom-4 right-4 flex flex-col items-center cursor-pointer group z-40"
         >
-          <div className="bg-[#ff9900] w-10 h-10 md:w-12 md:h-12 rounded-full flex justify-center items-center">
-            <IoIosArrowUp className="text-white text-base sm:text-2xl font-bold transform transition-transform duration-300 group-hover:-translate-y-1" />
+          <div className="bg-indigo-600 size-10 rounded-full flex justify-center items-center">
+            <ChevronUpIcon className="text-white size-5 -mt-0.5 stroke-3" />
           </div>
-          <span className="mt-2 text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Back to Top
+          <span className="mt-2 text-indigo-600 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Scroll to Top
           </span>
         </button>
       )}
-
       <Footer />
     </div>
   );
